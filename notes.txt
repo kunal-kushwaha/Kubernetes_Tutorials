@@ -1,0 +1,13 @@
+At its base, Kubernetes brings together individual physical or virtual machines into a cluster using a shared network to communicate between each server. This cluster is the physical platform where all Kubernetes components, capabilities, and workloads are configured.
+
+The machines in the cluster are each given a role within the Kubernetes ecosystem. One server (or a small group in highly available deployments) functions as the master server. This server acts as a gateway and brain for the cluster by exposing an API for users and clients, health checking other servers, deciding how best to split up and assign work (known as "scheduling"), and orchestrating communication between other components.
+
+The other machines in the cluster are designated as nodes: servers responsible for accepting and running workloads using local and external resources. To help with isolation, management, and flexibility, Kubernetes runs applications and services in containers, so each node needs to be equipped with a container runtime (like Docker or rkt). The node receives work instructions from the master server and creates or destroys containers accordingly, adjusting networking rules to route and forward traffic appropriately.
+
+As mentioned above, the applications and services themselves are run on the cluster within containers. 
+Users interact with the cluster by communicating with the main API server either directly or with clients and libraries. To start up an application or service, a declarative plan is submitted in JSON or YAML defining what to create and how it should be managed. The master server then takes the plan and figures out how to run it on the infrastructure by examining the requirements and the current state of the system. This group of user-defined applications running according to a specified plan represents Kubernetes' final layer.
+
+In Kubernetes, servers that perform work by running containers are known as nodes. Node servers have a few requirements that are necessary for communicating with master components, configuring the container networking, and running the actual workloads assigned to them.
+
+Kubernetes uses additional layers of abstraction over the container interface to provide scaling, resiliency, and life cycle management features.
+A pod is the most basic unit that Kubernetes deals with. Containers themselves are not assigned to hosts. Instead, one or more tightly coupled containers are encapsulated in an object called a pod.
